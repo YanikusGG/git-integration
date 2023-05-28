@@ -15,6 +15,7 @@ SYNOPSIS
 'git diff' [<options>] <commit>...<commit> [--] [<path>...]
 'git diff' [<options>] <blob> <blob>
 'git diff' [<options>] --no-index [--] <path> <path>
+'git diff' --myers [<options>] <path> <path>
 
 DESCRIPTION
 -----------
@@ -30,6 +31,10 @@ files on disk.
 	words, the differences are what you _could_ tell Git to
 	further add to the index but you still haven't.  You can
 	stage these changes by using linkgit:git-add[1].
+
+'git diff' --myers [<options>] <path> <path>::
+
+	Use myers-diff program to compare files on the filesystem.
 
 'git diff' [<options>] --no-index [--] <path> <path>::
 

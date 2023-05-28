@@ -33,7 +33,8 @@ static const char builtin_diff_usage[] =
 "   or: git diff [<options>] [--merge-base] <commit> [<commit>...] <commit> [--] [<path>...]\n"
 "   or: git diff [<options>] <commit>...<commit> [--] [<path>...]\n"
 "   or: git diff [<options>] <blob> <blob>\n"
-"   or: git diff [<options>] --no-index [--] <path> <path>"
+"   or: git diff [<options>] --no-index [--] <path> <path>\n"
+"   or: git diff --myers [<options>] <path> <path>"
 "\n"
 COMMON_DIFF_OPTIONS_HELP;
 
@@ -437,6 +438,11 @@ int cmd_diff(int argc, const char **argv, const char *prefix)
 	 *
 	 * Other cases are errors.
 	 */
+
+	/* Check for using myers-diff */
+	if (!strcmp(argv[1], "--myers")) {
+		execvp("myers-diff", argv + 1);
+	}
 
 	/* Were we asked to do --no-index explicitly? */
 	for (i = 1; i < argc; i++) {
